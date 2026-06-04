@@ -1,6 +1,7 @@
 import {NextRequest, NextResponse} from "next/server";
 import Room from '../models/room';
 
+// Get all rooms => /api/rooms
 export const allRooms = async (req: NextRequest) => {
     const resPerPage: number = 8;
     const rooms = await Room.find();
@@ -23,6 +24,7 @@ export const newRoom = async (req: NextRequest) => {
     });
 };
 
+// Get room details /api/rooms/:id
 export const getRoomDetails = async (req: NextRequest, {params}: { params: Promise<{ id: string }> }) => {
     const {id} = await params;
 
@@ -37,5 +39,47 @@ export const getRoomDetails = async (req: NextRequest, {params}: { params: Promi
     return NextResponse.json({
         success: true,
         room
+    });
+};
+
+// Update room details /api/admin/rooms/:id
+export const updateRoom = async (req: NextRequest, {params}: { params: Promise<{ id: string }> }) => {
+    const {id} = await params;
+
+    let room = await Room.findById(id);
+    const body = await req.json();
+    if (!room) {
+        return NextResponse.json({
+            message: 'Room not found',
+        }, {
+            status: 404
+        });
+    }
+    room = await Room.findByIdAndUpdate(id, body, {
+        new: true
+    });
+    return NextResponse.json({
+        success: true,
+        room
+    });
+};
+
+// Delete room details /api/admin/rooms/:id
+export const deleteRoom = async (req: NextRequest, {params}: { params: Promise<{ id: string }> }) => {
+    const {id} = await params;
+
+    const room = await Room.findById(id);
+    if (!room) {
+        return NextResponse.json({
+            message: 'Room not found',
+        }, {
+            status: 404
+        });
+    }
+
+    //TODO - delete images associated with the room
+    await room.deleteOne();
+    return NextResponse.json({
+        success: true
     });
 };
