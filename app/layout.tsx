@@ -5,6 +5,8 @@ import "./globals.css";
 import Head from "./head";
 import {GlobalProvider} from "@/app/GlobalProvider";
 import Script from "next/script";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -29,7 +31,11 @@ export default function RootLayout({
     return (
         <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
         <Head/>
-        <body><GlobalProvider>{children}</GlobalProvider>
+        <body><GlobalProvider>
+            <Header/>
+            {children}
+            <Footer/>
+        </GlobalProvider>
         <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></Script>
         <Script src="https://kit.fontawesome.com/0337cb34f9.js"></Script>
         </body>
