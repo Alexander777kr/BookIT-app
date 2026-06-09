@@ -1,12 +1,13 @@
+import React from "react";
 import type {Metadata} from "next";
 import {Geist, Geist_Mono} from "next/font/google";
-import 'bootstrap/dist/css/bootstrap.css';
-import "./globals.css";
-import Head from "./head";
 import {GlobalProvider} from "@/app/GlobalProvider";
 import Script from "next/script";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import 'bootstrap/dist/css/bootstrap.css';
+import "./globals.css";
+
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -30,14 +31,24 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Head/>
+        <head>
+            <title>BookIT</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <meta name="description" content="My awesome Next.js application"/>
+            <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+            />
+            <link rel="icon" href="/favicon.ico"/>
+        </head>
         <body><GlobalProvider>
             <Header/>
             {children}
             <Footer/>
         </GlobalProvider>
         <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></Script>
-        <Script src="https://kit.fontawesome.com/0337cb34f9.js"></Script>
+
+        {/*<Script src="https://kit.fontawesome.com/0337cb34f9.js"></Script>*/}
         </body>
         </html>
     );
