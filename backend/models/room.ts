@@ -22,6 +22,7 @@ export interface ILocation {
 }
 
 export interface IRoom extends Document {
+    _id: mongoose.Types.ObjectId;
     name: string;
     description: string;
     pricePerNight: number;
