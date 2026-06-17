@@ -44,7 +44,7 @@ export interface IRoom extends Document {
     createdAt: Date;
 }
 
-const roomSchema: Schema<IRoom> = new Schema({
+const RoomSchema: Schema<IRoom> = new Schema({
     name: {
         type: String,
         required: [true, "Please enter room name"],
@@ -164,4 +164,4 @@ const roomSchema: Schema<IRoom> = new Schema({
 });
 
 export default mongoose.models.Room ||
-mongoose.model<IRoom>("Room", roomSchema);
+mongoose.model<IRoom>("Room", RoomSchema);

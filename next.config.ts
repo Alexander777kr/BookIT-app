@@ -2,6 +2,7 @@ import type {NextConfig} from "next";
 
 const nextConfig: NextConfig = {
     env: {
+        STRIPE_SECRET_KEY: "sk_test_AdB0pxiYLxR2TPguxODqjGdD00zj4fLcSC",
         API_URL: "http://localhost:3000",
         DB_LOCAL_URI: 'mongodb://127.0.0.1:27017/bookit-v2',
         DB_URI: '',
@@ -15,7 +16,8 @@ const nextConfig: NextConfig = {
         SMTP_USER: 'f19dd4ec4674f9',
         SMTP_PASSWORD: '8858e84a006b87',
         SMTP_FROM_EMAIL: 'noreply@bookit.com',
-        SMTP_FROM_NAME: 'BookIT'
+        SMTP_FROM_NAME: 'BookIT',
+        STRIPE_WEBHOOK_SECRET: 'whsec_26fa2c7a89e632f89a246abd137d4042b193edd973b1d68b9f47df8aefedfe1e'
     },
     reactStrictMode: false,
     images: {
